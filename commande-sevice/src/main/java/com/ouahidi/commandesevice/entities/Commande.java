@@ -17,12 +17,10 @@ public class Commande {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCommande;
     private Integer quantite;
-
     private Long idProduit;
+    private Long idClient;
     @Transient
     private Produit produit;
-
-    private Long idClient;
     @Transient
     private Client client;
 }

@@ -22,46 +22,29 @@ public class CommandeController {
         this.clientOpenFeing = clientOpenFeing;
         this.produitOpenFeing = produitOpenFeing;
     }
-
     CommandeRepositoriy commandeRepositoriy;
-
     ClientOpenFeing clientOpenFeing;
-
     ProduitOpenFeing produitOpenFeing;
-
-
     @GetMapping("/commandes")
-
     public List<Commande> allCommandes(){
-
         List<Commande> commandes = commandeRepositoriy.findAll();
-        List<Long> cliId= new ArrayList<>();
+        for (Commande c: commandes){
+            Produit p = produitOpenFeing.findById(c.getIdProduit());
+            c.setProduit(p);
+            Client  cl = clientOpenFeing.findById(c.getIdClient());
+            c.setClient(cl);
 
-        List<Client>  clients = clientOpenFeing.findAll();
-        List<Produit> produits =produitOpenFeing.findAll();
-
-        List<Commande>  com = new ArrayList<>();
-
-
-        for (Commande cm:commandes) {
-            for (Client c : clients)
-                if (c.getIdClient() == cm.getIdClient()) {
-                    cm.setClient(c);
-                    break;
-                }
-            for (Produit p : produits)
-                if (p.getIdProduit() == cm.getIdProduit()) {
-                    cm.setProduit(p);
-                }
-             com.add(cm);
         }
-        return com;
+         return commandes;
+
+
     }
 
     @GetMapping("/commandes/{id}")
     public Commande aCommandes(@PathVariable Long id){
 
         Commande cm = commandeRepositoriy.findById(id).get();
+
          Client cl= clientOpenFeing.findById(cm.getIdClient());
         cm.setClient(cl);
 

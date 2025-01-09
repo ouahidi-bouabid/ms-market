@@ -12,8 +12,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 
 @EnableFeignClients
-//@EnableDiscoveryClient
-
+@EnableDiscoveryClient
 
 public class CommandeSeviceApplication {
 

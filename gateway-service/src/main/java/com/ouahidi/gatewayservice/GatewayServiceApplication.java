@@ -8,7 +8,6 @@ import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitio
 import org.springframework.cloud.gateway.discovery.DiscoveryLocatorProperties;
 import org.springframework.context.annotation.Bean;
 
-
 @SpringBootApplication
 //@EnableDiscoveryClient
 public class GatewayServiceApplication {
